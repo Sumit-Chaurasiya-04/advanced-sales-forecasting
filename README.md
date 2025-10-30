@@ -6,44 +6,6 @@ Project Overview
 
 This project implements a sophisticated time series analysis pipeline using the Prophet library for sales forecasting on the Global Superstore dataset. It is designed to rigorously compare a simple baseline model against an advanced model incorporating External Regressors and Global Holidays to achieve superior accuracy and provide actionable business insights through an interactive Streamlit dashboard.
 
-Key Features
-
-Feature
-
-Description
-
-Advanced Technique
-
-Model Comparison
-
-Automatically trains and validates a simple Baseline Model (Seasonality only) against the Advanced Model.
-
-Direct RMSE and MAE comparison on a dedicated test set.
-
-External Regressors
-
-Includes key operational metrics (Quantity, Discount, Profit, Shipping Cost) as independent variables.
-
-Multivariate Time Series Analysis via Prophet's add_regressor.
-
-Global Holidays
-
-Accounts for predictable sales spikes around major retail events (Black Friday, Christmas).
-
-Custom Holidays Dataframe to handle non-seasonal anomalies.
-
-Interactive Dashboard
-
-A polished web application built with Streamlit for non-technical users to upload data and adjust forecast horizons.
-
-Full MVT (Model-View-Template) separation for clear project structure.
-
-Future Prediction
-
-Models are retrained on the full dataset and used to forecast sales for future periods (e.g., 30 days beyond the last historical date).
-
-Realistic Production-ready forecasting setup.
-
 🛠️ Technology Stack
 
 Core Libraries: pandas, numpy, matplotlib, seaborn
