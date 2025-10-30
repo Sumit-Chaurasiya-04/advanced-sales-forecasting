@@ -1,64 +1,143 @@
-🚀 Advanced Sales Forecasting with Prophet (Superstore Analysis)
+💰 Advanced Sales Forecasting: Global Superstore Analysis 🚀
 
-This project showcases a robust time-series forecasting pipeline using the Prophet library, built by Facebook. It is specifically designed for sales data analysis, featuring a direct comparison between a simple baseline model and an advanced model that incorporates External Regressors (like Quantity, Profit, etc.) to significantly improve predictive accuracy.
+Repository Link: https://github.com/Sumit-Chaurasiya-04/advanced-sales-forecasting
 
-The project is fully containerized and features an interactive web dashboard built with Streamlit, allowing users to upload data and test different forecast horizons in real-time.
+Project Overview
 
-✨ Features
+This project implements a sophisticated time series analysis pipeline using the Prophet library for sales forecasting on the Global Superstore dataset. It is designed to rigorously compare a simple baseline model against an advanced model incorporating External Regressors and Global Holidays to achieve superior accuracy and provide actionable business insights through an interactive Streamlit dashboard.
 
-Dual-Model Comparison: Automatically compares a Baseline model (Trend + Seasonality only) against an Advanced model (Trend + Seasonality + Regressors).
+Key Features
 
-External Regressors: Utilizes key transactional metrics (Quantity, Discount, Profit, Shipping Cost) as external regressors to capture non-seasonal impacts on sales.
+Feature
 
-Interactive Streamlit Dashboard: A user-friendly web application for data upload, parameter tuning, and dynamic visualization of results.
+Description
 
-Future Forecasting: Includes logic to forecast sales into the unknown future by making reasonable assumptions (using historical averages) for the required external regressors.
+Advanced Technique
 
-Detailed Metrics: Provides clear validation metrics (MAE, RMSE, MSE) to quantify model performance.
+Model Comparison
 
-🛠️ Setup and Installation
+Automatically trains and validates a simple Baseline Model (Seasonality only) against the Advanced Model.
 
-Prerequisites
+Direct RMSE and MAE comparison on a dedicated test set.
 
-You need Python 3.8+ installed on your system.
+External Regressors
 
-1. Clone the repository
+Includes key operational metrics (Quantity, Discount, Profit, Shipping Cost) as independent variables.
 
-git clone [https://github.com/your-username/your-superstore-project.git](https://github.com/your-username/your-superstore-project.git)
-cd your-superstore-project
+Multivariate Time Series Analysis via Prophet's add_regressor.
+
+Global Holidays
+
+Accounts for predictable sales spikes around major retail events (Black Friday, Christmas).
+
+Custom Holidays Dataframe to handle non-seasonal anomalies.
+
+Interactive Dashboard
+
+A polished web application built with Streamlit for non-technical users to upload data and adjust forecast horizons.
+
+Full MVT (Model-View-Template) separation for clear project structure.
+
+Future Prediction
+
+Models are retrained on the full dataset and used to forecast sales for future periods (e.g., 30 days beyond the last historical date).
+
+Realistic Production-ready forecasting setup.
+
+🛠️ Technology Stack
+
+Core Libraries: pandas, numpy, matplotlib, seaborn
+
+Forecasting: Prophet (developed by Meta)
+
+Web Application: Streamlit
+
+Environment Management: pip
+
+⚙️ Setup and Installation
+
+Follow these steps to get a local copy of the project running on your machine.
+
+1. Clone the Repository
+
+Open your terminal or Git Bash and run:
+
+git clone [https://github.com/Sumit-Chaurasiya-04/advanced-sales-forecasting.git](https://github.com/Sumit-Chaurasiya-04/advanced-sales-forecasting.git)
+cd advanced-sales-forecasting
 
 
-2. Install Dependencies
+2. Prepare the Data
 
-Install all required Python packages using the provided requirements.txt file.
+Ensure your Global_Superstore.csv file is placed directly inside the project root directory. The file must contain the following columns for successful execution:
 
+Order Date
+
+Sales
+
+Quantity
+
+Discount
+
+Profit
+
+Shipping Cost
+
+(Note: The .gitignore file excludes this large data file from the repository, so you must provide it locally.)
+
+3. Install Dependencies
+
+It is highly recommended to use a virtual environment.
+
+# Create and activate a virtual environment
+python -m venv venv
+source venv/bin/activate  # On Windows, use: .\venv\Scripts\activate
+
+# Install all required libraries
 pip install -r requirements.txt
 
 
-3. Data Preparation
+🚀 Running the Project
 
-Place your data file, Global_Superstore.csv, into the root directory of the project.
+You have two ways to run the analysis: the command-line script for comparison, and the Streamlit app for interactive use.
 
-Note: Your CSV must contain, at a minimum, the columns Order Date, Sales, Quantity, Discount, Profit, and Shipping Cost.
+A. Run the Core Analysis Script
 
-🚀 How to Run the Project
-
-You have two main ways to interact with the project:
-
-Option A: Run the Interactive Dashboard (Recommended)
-
-Start the Streamlit application to access the full interactive interface in your browser.
-
-streamlit run dashboard.py
-
-
-This will automatically open the dashboard, allowing you to upload your CSV file and adjust the parameters on the sidebar.
-
-Option B: Run the Standalone Comparison Script
-
-Execute the core Python script to run the full two-model comparison locally, outputting the metrics table and showing all plots.
+This script trains both models, prints the performance comparison, and displays the final plots.
 
 python forecasting_superstore.py
 
 
-This script will print the comparison table to the console and display the generated Matplotlib charts for the best-performing model.
+B. Run the Interactive Dashboard
+
+This command launches the Streamlit web application in your browser.
+
+streamlit run dashboard.py
+
+
+A browser window will open, allowing you to upload your Global_Superstore.csv file and interactively adjust the forecast parameters.
+
+📈 Model Methodology (The Advanced Difference)
+
+The core logic trains two models to demonstrate the value of advanced feature engineering:
+
+Baseline Model:
+
+
+$$Y_{t} = \text{Trend} + \text{Seasonality} + \text{Error}$$
+
+
+Uses only time features (weekly, yearly seasonality) to model sales.
+
+Advanced Model:
+
+
+$$Y_{t} = \text{Trend} + \text{Seasonality} + \text{Holidays} + \beta_1 \cdot \text{Quantity} + \beta_2 \cdot \text{Discount} + \beta_3 \cdot \text{Profit} + \beta_4 \cdot \text{Shipping Cost} + \text{Error}$$
+
+
+This model explicitly models the impact of known events (holidays) and business decisions (regressors), leading to a significant reduction in forecast error.
+
+Next Steps (Future Enhancements)
+
+To take this project to the next level of analytical rigor, the following enhancement is planned:
+
+Automated Hyperparameter Tuning: Implement a grid search or cross-validation approach to automatically find the optimal changepoint_prior_scale and seasonality_mode for the Prophet models, ensuring the statistically best possible forecast.
