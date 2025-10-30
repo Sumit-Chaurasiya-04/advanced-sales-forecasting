@@ -1,0 +1,19 @@
+Ignore common Python artifacts
+
+pycache/
+*.pyc
+*.o
+*.so
+
+Ignore environments
+
+venv/
+env/
+
+Ignore the actual data file to save space and protect data privacy
+
+Only keep the small mock data or a heavily truncated version if needed.
+
+Since your file is large, we should ignore it:
+
+Global_Superstore.csv
